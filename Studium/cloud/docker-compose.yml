@@ -1,0 +1,113 @@
+services:
+  nginx:  
+    container_name: nginx
+    build: 
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - static:/app/backend/django_static
+      - media:/app/backend/media
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - backend
+      - daphne
+    restart: always
+
+  backend:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: Dockerfile.django
+    expose:
+      - "8000"
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - ./.env
+    restart: always
+    volumes:
+      - static:/usr/src/app/django_static
+      - media:/usr/src/app/media
+    command: >
+      sh -c "
+        echo 'Запуск Gunicorn...'
+        exec gunicorn studium_backend.wsgi:application \
+          --bind 0.0.0.0:8000 \
+          --workers 3 \
+          --log-level info \
+          --access-logfile /usr/src/app/logs/gunicorn.log \
+          --error-logfile /usr/src/app/logs/gunicorn.log
+      "
+
+  daphne:
+    container_name: daphne
+    build:
+      context: .
+      dockerfile: Dockerfile.django
+    command: daphne -b 0.0.0.0 -p 8001 studium_backend.asgi:application
+    expose:
+      - "8001" 
+    depends_on:
+      - backend
+      - redis
+    env_file:
+      - ./.env
+    restart: always
+
+  worker_beat:
+    container_name: worker_beat
+    build: 
+      context: .
+      dockerfile: Dockerfile.django
+    command: -A studium_backend beat --loglevel=info
+    entrypoint: celery
+    env_file:
+      - ./.env
+    depends_on:
+      - backend
+      - redis
+    restart: always
+    
+  worker:
+    container_name: worker
+    build: 
+      context: .
+      dockerfile: Dockerfile.django
+    command: -A studium_backend worker --loglevel=info
+    entrypoint: celery
+    env_file:
+      - ./.env
+    depends_on:
+      - worker_beat
+      - backend
+      - redis
+    restart: always
+
+  redis:
+    image: redis:alpine
+    hostname: redis
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    container_name: db_postgres
+    image: postgres:latest 
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - db-data:/var/lib/postgresql/data 
+    restart: always
+
+volumes:
+  db-data:
+  static:
+  media:

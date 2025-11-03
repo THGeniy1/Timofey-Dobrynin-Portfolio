@@ -1,0 +1,59 @@
+[
+  {
+    "model": "payments.SlotPackage",
+    "pk": 1,
+    "fields": {
+      "slots_count": 1,
+      "price": "50.00",
+      "old_price": null,
+      "description": "Один слот",
+      "is_active": true
+    }
+  },
+  {
+    "model": "payments.SlotPackage",
+    "pk": 2,
+    "fields": {
+      "slots_count": 5,
+      "price": "200.00",
+      "old_price": "250.00",
+      "description": "Малый пакет (экономия 20%)",
+      "is_active": true
+    }
+  },
+  {
+    "model": "payments.SlotPackage",
+    "pk": 3,
+    "fields": {
+      "slots_count": 10,
+      "price": "350.00",
+      "old_price": "500.00",
+      "description": "Средний пакет (экономия 30%)",
+      "is_active": true
+    }
+  },
+  {
+    "model": "payments.SlotPackage",
+    "pk": 4,
+    "fields": {
+      "slots_count": 20,
+      "price": "600.00",
+      "old_price": "1000.00",
+      "description": "Большой пакет (экономия 40%)",
+      "is_active": true
+    }
+  },
+  {
+    "model": "payments.SlotPackage",
+    "pk": 5,
+    "fields": {
+      "slots_count": 50,
+      "price": "1200.00",
+      "old_price": "2500.00",
+      "description": "Профессиональный пакет (экономия 52%)",
+      "is_active": true
+    }
+  }
+]
+
+

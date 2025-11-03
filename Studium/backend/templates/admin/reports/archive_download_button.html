@@ -1,0 +1,9 @@
+{% if download_url %}
+  <div class="archive-buttons">
+      <a href="{{ download_url }}" class="button">
+          Скачать архив
+      </a>
+  </div>
+{% else %}
+  <span>Нет файлов для скачивания</span>
+{% endif %}

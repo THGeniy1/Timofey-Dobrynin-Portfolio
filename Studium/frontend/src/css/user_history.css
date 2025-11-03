@@ -1,0 +1,351 @@
+/* User History Component Styles */
+
+/* Transaction Icon Styles */
+.transaction-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Deposit - Пополнение */
+.transaction-icon.deposit {
+    background-color: #E8F5E8;
+}
+
+.transaction-icon.deposit svg {
+    fill: #4CAF50;
+}
+
+/* Withdraw - Вывод */
+.transaction-icon.withdraw {
+    background-color: #FFEBEE;
+}
+
+.transaction-icon.withdraw svg {
+    fill: #F44336;
+}
+
+/* Purchase Ready Task - Покупка работы */
+.transaction-icon.purchase_ready_task {
+    background-color: #E3F2FD;
+}
+
+.transaction-icon.purchase_ready_task svg {
+    fill: #2196F3;
+}
+
+/* Purchase Slots - Покупка слотов */
+.transaction-icon.purchase_slots {
+    background-color: #E1F5FE;
+}
+
+.transaction-icon.purchase_slots svg {
+    fill: #00BCD4;
+}
+
+/* Refund - Возврат */
+.transaction-icon.refund {
+    background-color: #FFF3E0;
+}
+
+.transaction-icon.refund svg {
+    fill: #FF9800;
+}
+
+/* Reward - Начисление за продажу */
+.transaction-icon.reward {
+    background-color: #FFFDE7;
+}
+
+.transaction-icon.reward svg {
+    fill: #FFD700;
+}
+
+/* Default fallback */
+.transaction-icon.default {
+    background-color: #F5F5F5;
+}
+
+.transaction-icon.default svg {
+    fill: #757575;
+}
+
+/* Status Badge Styles */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Pending - В ожидании средств */
+.status-badge.pending {
+    background-color: #FFF3E0;
+    color: #F57C00;
+}
+
+/* Frozen - Заморожены */
+.status-badge.frozen {
+    background-color: #E3F2FD;
+    color: #1976D2;
+}
+
+/* Paid - Исполнена */
+.status-badge.paid {
+    background-color: #E8F5E8;
+    color: #2E7D32;
+}
+
+/* Canceled - Отменен */
+.status-badge.canceled {
+    background-color: #FFEBEE;
+    color: #C62828;
+}
+
+/* Failed - Ошибка */
+.status-badge.failed {
+    background-color: #FFEBEE;
+    color: #D32F2F;
+}
+
+/* Default fallback */
+.status-badge.default {
+    background-color: #F5F5F5;
+    color: #757575;
+}
+
+/* Transaction Row Styles */
+.transaction-row {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #E0E0E0;
+    gap: 16px;
+    transition: background-color 0.2s ease;
+}
+
+.transaction-row:hover {
+    background-color: #FAFAFA;
+}
+
+.transaction-icon-container {
+    flex: 0 0 auto;
+}
+
+.transaction-description {
+    flex: 1;
+    min-width: 0;
+}
+
+.transaction-amount {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 4px;
+    word-break: break-word;
+}
+
+.transaction-date {
+    font-size: 12px;
+    color: #666;
+}
+
+.transaction-type {
+    flex: 1;
+    text-align: center;
+}
+
+.transaction-type-text {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.transaction-status-container {
+    flex: 0 0 auto;
+}
+
+.transaction-date-container {
+    flex: 0 0 auto;
+    text-align: right;
+}
+
+.transaction-date-display {
+    font-size: 12px;
+    color: #666;
+    white-space: nowrap;
+}
+
+/* Empty State Styles */
+.empty-transactions {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+/* Load More Styles */
+.load-more-trigger {
+    height: 1px;
+}
+
+.loading-more {
+    text-align: center;
+    padding: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .transaction-row {
+        gap: 12px;
+        padding: 14px;
+    }
+    
+    .transaction-amount {
+        font-size: 13px;
+    }
+    
+    .transaction-type-text {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 992px) {
+    .transaction-row {
+        gap: 10px;
+        padding: 12px;
+    }
+    
+    .transaction-amount {
+        font-size: 12px;
+    }
+    
+    .transaction-type-text {
+        font-size: 12px;
+    }
+    
+    .transaction-date,
+    .transaction-date-display {
+        font-size: 11px;
+    }
+    
+    .status-badge {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .transaction-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px;
+    }
+    
+    .transaction-icon-container {
+        align-self: flex-start;
+    }
+    
+    .transaction-description {
+        width: 100%;
+        order: 1;
+    }
+    
+    .transaction-type {
+        width: 100%;
+        text-align: left;
+        order: 2;
+    }
+    
+    .transaction-status-container {
+        align-self: flex-start;
+        order: 3;
+    }
+    
+    .transaction-date-container {
+        align-self: flex-end;
+        order: 4;
+        margin-left: auto;
+    }
+    
+    .transaction-amount {
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+    
+    .transaction-type-text {
+        font-size: 13px;
+    }
+    
+    .transaction-date,
+    .transaction-date-display {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .transaction-row {
+        padding: 10px;
+        gap: 6px;
+    }
+    
+    .transaction-icon {
+        width: 20px;
+        height: 20px;
+        padding: 6px;
+    }
+    
+    .transaction-amount {
+        font-size: 13px;
+    }
+    
+    .transaction-type-text {
+        font-size: 12px;
+    }
+    
+    .transaction-date,
+    .transaction-date-display {
+        font-size: 11px;
+    }
+    
+    .status-badge {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+    
+    .empty-transactions {
+        padding: 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .transaction-row {
+        padding: 8px;
+    }
+    
+    .transaction-amount {
+        font-size: 12px;
+    }
+    
+    .transaction-type-text {
+        font-size: 11px;
+    }
+    
+    .transaction-date,
+    .transaction-date-display {
+        font-size: 10px;
+    }
+    
+    .status-badge {
+        font-size: 9px;
+        padding: 2px 4px;
+    }
+}

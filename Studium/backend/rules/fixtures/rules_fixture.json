@@ -1,0 +1,32 @@
+[
+    {
+      "model": "rules.rules",
+      "pk": 1,
+      "fields": {
+        "type": "rules",
+        "name": "Основные правила сообщества",
+        "path": "public/rules/1/a97ec9c3-3523-4253-8364-ae5979a0e005.pdf",
+        "create_date": "2023-01-15T10:00:00Z"
+      }
+    },
+    {
+      "model": "rules.rules",
+      "pk": 2,
+      "fields": {
+        "type": "offer",
+        "name": "Публичная оферта на оказание услуг",
+        "path": "public/rules/1/c87a2fde-230e-455f-8e75-bb8b336119fe.pdf",
+        "create_date": "2023-02-20T14:30:00Z"
+      }
+    },
+    {
+      "model": "rules.rules",
+      "pk": 3,
+      "fields": {
+        "type": "privacy_politic",
+        "name": "Политика обработки персональных данных",
+        "path": "public/rules/1/d33a9a3c-dcb6-467e-8d01-d58e231663af.pdf",
+        "create_date": "2023-03-10T09:15:00Z"
+      }
+    }
+  ]

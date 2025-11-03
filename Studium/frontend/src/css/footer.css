@@ -1,0 +1,136 @@
+#footer_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+    padding: 20px;
+    background-color: #2c3e50;
+    margin-top: auto;
+    width: 100%;
+    color: #ecf0f1;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.footer_nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.row_container_footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#footer_link {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+#footer_link:hover {
+    color: #55ced6;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.company_info {
+    text-align: left;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+.company_info p {
+    margin: 5px 0;
+    color: #bdc3c7;
+    font-size: 0.95rem;
+}
+
+.error-notifications {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.error-notification {
+    background-color: #ff4444;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    animation: slideIn 0.3s ease-out;
+    max-width: 300px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    #footer_container {
+        padding: 20px 15px;
+        min-height: 100px;
+    }
+
+    .footer_nav {
+        padding: 0;
+    }
+
+    #footer_link {
+        font-size: 1.1rem;
+        padding: 8px 15px;
+    }
+
+    .company_info {
+        padding-top: 15px;
+    }
+
+    .error-notifications {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+    }
+
+    .error-notification {
+        width: auto;
+    }
+}
+
+@media (max-width: 1200px) {
+    .row_container_footer {
+        display: none !important;
+    }
+}

@@ -1,0 +1,9 @@
+FROM node
+
+WORKDIR /studium/frontend
+
+COPY ./frontend .
+
+RUN npm install
+
+CMD [ "npm", "run", "deploy" ]

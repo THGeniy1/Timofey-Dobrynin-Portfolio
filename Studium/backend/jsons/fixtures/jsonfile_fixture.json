@@ -1,0 +1,162 @@
+[
+    {
+        "model": "jsons.jsonfile",
+        "pk": 1,
+        "fields": {
+            "name": "categories.json",
+            "path": "jsons/categories.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 2,
+        "fields": {
+            "name": "degree_level.json",
+            "path": "jsons/degree_level.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 3,
+        "fields": {
+            "name": "place_study.json",
+            "path": "jsons/place_study.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 4,
+        "fields": {
+            "name": "types.json",
+            "path": "jsons/types.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 5,
+        "fields": {
+            "name": "sorting.json",
+            "path": "jsons/sorting.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 6,
+        "fields": {
+            "name": "types_conflict.json",
+            "path": "jsons/types_conflict.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 7,
+        "fields": {
+            "name": "create_task_hint.json",
+            "path": "jsons/create_task_hint.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 8,
+        "fields": {
+            "name": "edit_profile_hint.json",
+            "path": "jsons/edit_profile_hint.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 9,
+        "fields": {
+            "name": "purchase_ready_task_hint.json",
+            "path": "jsons/purchase_ready_task_hint.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 10,
+        "fields": {
+            "name": "rate_task_hint.json",
+            "path": "jsons/rate_task_hint.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 11,
+        "fields": {
+            "name": "general_report_hint.json",
+            "path": "jsons/general_report_hint.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 12,
+        "fields": {
+            "name": "user_report_hint.json",
+            "path": "jsons/user_report_hint.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 13,
+        "fields": {
+            "name": "work_report_hint.json",
+            "path": "jsons/work_report_hint.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 14,
+        "fields": {
+            "name": "rules_page_hint.json",
+            "path": "jsons/rules_page_hint.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 15,
+        "fields": {
+            "name": "refund_hint.json",
+            "path": "jsons/refund_hint.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    },
+    {
+        "model": "jsons.jsonfile",
+        "pk": 16,
+        "fields": {
+            "name": "withdraw_bank_data.json",
+            "path": "jsons/withdraw_bank_data.json",
+            "created_at": "2025-04-01T12:00:00Z",
+            "updated_at": "2025-04-01T12:00:00Z"
+        }
+    }
+]

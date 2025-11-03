@@ -1,0 +1,62 @@
+# Многоэтапная сборка для оптимизации размера
+FROM python:3.11-alpine AS builder
+
+WORKDIR /usr/src/app
+
+# Устанавливаем только необходимые для сборки зависимости
+RUN apk add --no-cache \
+    gcc python3-dev postgresql-dev libpq \
+    libffi-dev openssl-dev file-dev \
+    && rm -rf /var/cache/apk/*
+
+# Копируем requirements и устанавливаем зависимости
+COPY ./backend/requirements.txt .
+RUN pip install --upgrade pip \
+    && pip install --no-cache-dir --user -r requirements.txt \
+    && rm -rf /root/.cache/pip/* \
+    && rm -rf /tmp/*
+
+# Финальный образ
+FROM python:3.11-alpine
+
+WORKDIR /usr/src/app
+
+# Копируем только runtime зависимости
+RUN apk add --no-cache \
+    postgresql-dev libpq \
+    libffi openssl \
+    && rm -rf /var/cache/apk/*
+
+# Копируем установленные Python пакеты из builder
+COPY --from=builder /root/.local /root/.local
+
+# Добавляем Python пакеты в PATH
+ENV PATH=/root/.local/bin:$PATH
+
+# Скачиваем и настраиваем SSL сертификаты
+RUN mkdir -p ~/.postgresql/ ~/.selectels3 \
+    && wget https://storage.dbaas.selcloud.ru/CA.pem -O ~/.postgresql/root.crt \
+    && chmod 0600 ~/.postgresql/root.crt \
+    && wget https://secure.globalsign.net/cacert/root-r6.crt -O ~/.selectels3/root.crt \
+    && openssl x509 -inform der -in ~/.selectels3/root.crt -out ~/.selectels3/root.crt \
+    && chmod 600 ~/.selectels3/root.crt \
+    && rm -rf /tmp/*
+
+# Отключаем кеширование и буферизацию
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+# Создаём каталоги для статики, медиа и логов
+RUN mkdir -p /usr/src/app/static /usr/src/app/media /usr/src/app/logs \
+    && touch /usr/src/app/logs/django.log \
+    && chmod 666 /usr/src/app/logs/django.log
+
+# Копируем entrypoint и даём ему флаг +x
+COPY entrypoint.sh /usr/src/app/entrypoint.sh
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+# Копируем весь код проекта
+COPY ./backend .
+
+# Точка входа
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]

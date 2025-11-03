@@ -1,0 +1,26 @@
+FROM python:3.11-alpine
+
+WORKDIR /usr/src/app
+
+# Создаем директории для статики, медиа и логов
+RUN mkdir -p /usr/src/app/static /usr/src/app/media /usr/src/app/logs && \
+    chmod -R 777 /usr/src/app/logs
+
+# Отключаем кеширование bytecode и буферизацию вывода
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Устанавливаем зависимости
+RUN apk update && apk add --no-cache \
+    gcc python3-dev postgresql-dev libpq \
+    libffi-dev openssl-dev
+
+# Копируем зависимости и устанавливаем их
+COPY ./backend/requirements.txt .
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+
+# Копируем весь код
+COPY ./backend .
+
+# Запускаем entrypoint
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]

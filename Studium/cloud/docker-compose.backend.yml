@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: Dockerfile.django
+    dns_opt:
+      - "single-request"
+      - "single-request-reopen"
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - static:/usr/src/app/django_static
+      - media:/usr/src/app/media
+    depends_on:
+      - redis
+    command: >
+      sh -c "
+        echo 'Запуск Gunicorn...'
+        exec gunicorn studium_backend.wsgi:application \
+          --bind 0.0.0.0:8000 \
+          --workers 3 \
+          --log-level info \
+          --access-logfile /usr/src/app/logs/gunicorn.log \
+          --error-logfile /usr/src/app/logs/gunicorn.log
+      "
+
+  daphne:
+    container_name: daphne
+    build:
+      context: .
+      dockerfile: Dockerfile.django
+    command: daphne -b 0.0.0.0 -p 8001 studium_backend.asgi:application
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+    restart: always
+    depends_on:
+      - backend
+      - redis
+
+  worker_beat:
+    container_name: worker_beat
+    build:
+      context: .
+      dockerfile: Dockerfile.django
+    entrypoint: celery
+    command: -A studium_backend beat --loglevel=info
+    env_file:
+      - .env
+    restart: always
+    depends_on:
+      - backend
+      - redis
+
+  worker:
+    container_name: worker
+    build:
+      context: .
+      dockerfile: Dockerfile.django
+    entrypoint: celery
+    command: -A studium_backend worker --loglevel=info
+    env_file:
+      - .env
+    restart: always
+    depends_on:
+      - backend
+      - redis
+
+  redis:
+    image: redis:alpine
+    hostname: redis
+    restart: always
+
+volumes:
+  static:
+  media:

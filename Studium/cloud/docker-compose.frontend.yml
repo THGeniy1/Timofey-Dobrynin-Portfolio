@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  nginx:
+    container_name: frontend_nginx
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./frontend/build:/usr/share/nginx/html:ro
+      - ./nginx:/etc/nginx/conf.d:ro
+    restart: always
